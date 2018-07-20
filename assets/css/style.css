@@ -1,0 +1,22 @@
+body{
+    background:lightblue;
+    font-size: 120%;
+}
+
+img{
+    width:50%;
+    text-align: center;
+}
+.flex-container > div {
+background-color: #f1f1f1;
+  width: 400px;
+
+}
+.flex-container {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content:space-around;
+}
+li{
+    list-style:none;
+}

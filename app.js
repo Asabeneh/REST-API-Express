@@ -2,11 +2,9 @@ const http = require("http");
 const fs = require("fs");
 const path = require('path');
 const { parse } = require('querystring');
+const {studentsInfo} = require("./studentsInfo");
 
-const {mongoose} = require('./server/db/mongoose');
-const {User} = require('./server/models/user');
-
-
+console.log(studentsInfo)
 
 const express = require('express');
 const bodyParser = require('body-parser')
@@ -15,13 +13,12 @@ const app = express();
 
 app.set('view engine','ejs');
 
-app.use(express.static(__dirname + '/public'));
-app.use(express.static('./public/assets'));
+app.use(express.static(__dirname + '/assets/css'));
+app.use(express.static(__dirname + '/assets/images'));
 
 
 const port = process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const users = [
@@ -73,6 +70,9 @@ app.get('/',(req,res) => {
 app.get('/users',(req, res) => {
     res.json(users)
 });
+app.get('/students',(req,res) => {
+    res.render('students',{studentsInfo})
+})
 app.get('/users/:id',(req,res) => {
     const id = Number(req.params.id);
     let flag = false;
@@ -90,6 +90,24 @@ app.get('/users/:id',(req,res) => {
     }
    
 });
+app.get('/students/:id', (req, res) => {
+    const id = Number(req.params.id);
+    let flag = false;
+    for (let i = 0; i < studentsInfo.length; i++) {
+        if (studentsInfo[i]._id === id) {
+            individualUser = studentsInfo[i];
+            console.log(studentsInfo[i].nationality)
+            flag = true;
+            res.render("student", studentsInfo[i]);
+            break;
+        }
+    }
+    if (!flag) {
+        console.log('User was not found.')
+        res.render("notFound")
+    }
+
+});
 
 app.get('/user',(req,res) =>{
     console.log(req.body)
@@ -99,17 +117,8 @@ app.post('/users',(req,res) => {
     let id = users.length + 1;
     id++;
     const {firstname,lastname,photo, content, read} = req.body;
-    const user = new User ({firstname,lastname,photo,content,read});
-    user.save().then((doc) => {
-        res.send(doc)
-        
-
-    },(e) => {
-        res.status(400).send(e)
-    })
     
-    console.log('user',user)
-    fs.createWriteStream(__dirname + '/assets/' + `/${photo}`);
+    // fs.createWriteStream(__dirname + '/assets/images/' + `${photo}`);
 
     users.push({_id:id, firstname,lastname, photo, content,read:false}); 
 
@@ -142,7 +151,7 @@ app.delete('/users/:id',(req,res) => {
         console.log('A user with Id is deleted');
         console.log('Deleted:',deletedUser)
         res.render('userDeleted',{user:deletedUser})
-        // res.send('A user with Id is deleted')
+        res.send('A user with Id is deleted')
     }
 });
 
