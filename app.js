@@ -1,95 +1,41 @@
 const http = require("http");
 const fs = require("fs");
-const path = require('path');
-const { parse } = require('querystring');
-const {studentsInfo} = require("./studentsInfo");
-
-console.log(studentsInfo)
-
 const express = require('express');
 const bodyParser = require('body-parser')
+const path = require('path');
+const { parse } = require('querystring');
+const formidable = require('formidable')
+const {studentsInfo} = require("./studentsInfo");
+
+
 
 const app = express();
 
+console.log(path.join(__dirname, 'public'));
+
+
 app.set('view engine','ejs');
 
-app.use(express.static(__dirname + '/assets/css'));
-app.use(express.static(__dirname + '/assets/images'));
-
-
+app.use(express.static(__dirname + '/assets')); 
 const port = process.env.PORT || 3000;
 
+
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-const users = [
-    {
-        _id:1,
-        firstname:'Asabneh',
-        lastname:'Yetayeh',
-        email:'asabeneh@gmail.com',
-        photo:'',
-        content:'Go for dinner',
-        read:false
-    },
-    {
-        _id:2,
-        firstname:'Getaneh',
-        lastname:'Shitahun',
-        email:'getaneh@gmail.com',
-        photo:'',
-        content:'Go for lunch',
-        read:false
-    },
-    {
-        _id:3,
-        firstname:'Amare',
-        lastname:'Babel',
-        email:'amare@gmail.com',
-        photo:'',
-        content:'Go to school',
-        read:false
-    },
-    {
-        _id:4,
-        firstname:'Desalegn',
-        lastname:'Workie',
-        email:'desalegn@gmail.com',
-        photo:'',
-        content:'Go to work.',
-        read:false
-    }
-]
+
 
 let individualUser;
 
 
 app.get('/',(req,res) => {
-    res.render('index', {users})
-  });
-
-app.get('/users',(req, res) => {
-    res.json(users)
-});
-app.get('/students',(req,res) => {
     res.render('students',{studentsInfo})
 })
-app.get('/users/:id',(req,res) => {
-    const id = Number(req.params.id);
-    let flag = false;
-    for(let i = 0; i < users.length; i++){
-        if(users[i]._id === id){
-            individualUser = users[i];
-            flag = true;
-           res.render("user",{user:users[i]});
-           break;
-        }
-    }
-    if(!flag){
-        console.log('User was not found.')
-        res.render("notFound")
-    }
-   
+app.get('/students',(req, res) => {
+    res.json(studentsInfo)
 });
+
+
 app.get('/students/:id', (req, res) => {
     const id = Number(req.params.id);
     let flag = false;
@@ -109,37 +55,37 @@ app.get('/students/:id', (req, res) => {
 
 });
 
-app.get('/user',(req,res) =>{
+app.get('/add-student',(req,res) =>{
     console.log(req.body)
-    res.render('addUser')
+    res.render('addStudent')
 })
-app.post('/users',(req,res) => {
-    let id = users.length + 1;
+app.post('/students',(req, res) => {
+    let id = studentsInfo.length + 1;
     id++;
-    const {firstname,lastname,photo, content, read} = req.body;
+ 
+            
+    const {firstName,lastName,title,nationality, whySoftwareDeveloper, favoriteQuote, src:photo, skilss} = req.body;
+    console.log(req.body)
     
     // fs.createWriteStream(__dirname + '/assets/images/' + `${photo}`);
 
-    users.push({_id:id, firstname,lastname, photo, content,read:false}); 
+    studentsInfo.push(req.body); 
 
-    res.send({
-        _id:id,
-        firstname,lastname,photo,content,read
-    })
+    res.redirect('/')
  
  
 });
 
-app.delete('/users/:id',(req,res) => {
+app.delete('/students/:id',(req,res) => {
     const id = Number(req.params.id);
     let flag = true;
     let deletedUser = {}; 
-    for(let i = 0; i < users.length; i++){
-        if(users[i]._id === id){
-            users.splice(i,1);
+    for(let i = 0; i < studentsInfo.length; i++){
+        if(studentsInfo[i]._id === id){
+            studentsInfo.splice(i,1);
             Object.assign(deletedUser,users[i]);
             flag = true;
-        //   res.json(users);
+            res.json(studentsInfo);
            break;
         }
     }

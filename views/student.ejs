@@ -4,37 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Student</title>
-    <style>
-    .single-student{
-        width:80%;
-        margin: 0 auto;
-    }</style>
 </head>
 <body>
 
     <div class="single-student">
-    <img src="<%= src %>" /> 
-    <div>
-    <h1> <%= _id %>. <%= firstName %> <%= lastName %> </h1> 
-    <li><%= nationality %></li>
-    <li><%= title %></li>
-    <li><%= skills %></li>
-    <li><%= whySofterDeveloper %></li>
-   
-    <li><%= motivatesMe %></li>
-    <li><%= favoriteQuote %></li>
-    <li><%= joinedOn %></li>li
-    </div>  
+        <div class="image">
+                <img src="/images/<%= src %>" /> 
+        </div>
+        
+        <div class="image-detail">
+            <h1><%= _id %>. <%= firstName %> <%= lastName %> </h1> 
+            <li><%= nationality %></li>
+            <li><%= title %></li>
+            <li><%= skills %></li>
+            <li><%= whySofterDeveloper %></li>
+        
+            <li><%= motivatesMe %></li>
+            <li><%= favoriteQuote %></li>
+            <li><%= joinedOn %></li>
+            <a href="/">Back</a>
+        </div>  
     
     </div>
-  
-       
-        
-
-  
-    <a href="/students">Back to Students</a>                  
-    </li>
 </body>
 </html>

@@ -4,7 +4,7 @@ const studentsInfo = [
     firstName: "Rasbin",
     lastName: "",
     title: "Junior Developer",
-        nationality: "Nepalese",
+    nationality: "Nepalese",
     src: "rasbin.jpg",
     alt: "Rasbin",
     skills: [
@@ -193,7 +193,7 @@ const studentsInfo = [
     firstName: "Abdirahman",
     lastName: "Ali",
     title: "",
-    Nationality: "Somali",
+    nationality: "Somali",
     src: "abdirahman.jpg",
     alt: "Abdirahman",
     skills: ["HTML", "CSS", "Javascript", "Jqeury", "React"],
@@ -412,8 +412,7 @@ const studentsInfo = [
       "Because I enjoy learning it. More I learn more I want to learn.",
     longTermVision: "Full stack developer",
     motivatesMe: "Succeeding the goal.",
-    favoriteQuote:
-      "Everything that happens happens for good, even when it doesn’t look like",
+    favoriteQuote:"Everything that happens happens for good, even when it doesn’t look like",
     joinedOn: "16.04.2018"
   },
   {
@@ -453,13 +452,12 @@ const studentsInfo = [
     title: "Integrify Trainee",
     nationality: "Vietnam",
     src: "phuoc.jpg",
-    Alt: "Phuc",
+    alt: "Phuc",
     skills: ["HTML/CSS", "JavaScript", "React.js", "Java"],
     whySofterDeveloper: "Progressive work environment",
     longTermVision: "Full-stack developer/Data scientist",
     motivatesMe: "Modern technologies in web dev and data science",
-    favoriteQuote:
-      "The problem is that there's no standardized API for messages between humans. - mpjme",
+    favoriteQuote:"The problem is that there's no standardized API for messages between humans. - mpjme",
     joinedOn: "30.04.2018"
   },
   {
@@ -666,9 +664,9 @@ const studentsInfo = [
     lastName: "Bakos",
     title: "Trainee",
     nationality: "Hungarian",
-      src: "zsuzsanna.jpg",
+    src: "zsuzsanna.jpg",
     alt: "zsuzsanna Bakos",
-    Skills: ["HTML", "CSS", "JavaScript", "Bootstrap", "AutoCad 3D"],
+    skills: ["HTML", "CSS", "JavaScript", "Bootstrap", "AutoCad 3D"],
     whySofterDeveloper:
       "I like to create creative design and to challenge myself with new things",
     longTermVision: "To be a unique Web-Designer",
@@ -682,6 +680,7 @@ const studentsInfo = [
     _id: 37,
     firstName: "Khanh",
     lastName: "Dang",
+    title: "Trainee",
     nationality: "Vietnam",
     src: "khanh.jpg",
     alt: "Khanh Dang",

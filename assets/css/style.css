@@ -1,22 +1,74 @@
+* {
+    box-sizing: border-box;
+}
 body{
+
     background:lightblue;
     font-size: 120%;
+    font-family:Helvetica, sans-serif
+}
+h1{
+    text-align: center;
+}
+h1,h2{
+    font-family:fantasy;
+    font-size: 26px;
+    background: #f1f1f1;
+    
 }
 
 img{
-    width:50%;
     text-align: center;
+    border-radius: 3px;
+    max-width: 50%;
+    min-width: 50%;
 }
 .flex-container > div {
+    border:2px solid gray;
 background-color: #f1f1f1;
   width: 400px;
+  justify-content:center;
 
 }
 .flex-container {
   display: flex;
   flex-wrap:wrap;
-  justify-content:space-around;
+  justify-content:space-evenly;
 }
 li{
+
+    margin-left:10px;
     list-style:none;
+}
+.single-student{
+    border:2px solid green;
+    max-width:60%;
+    margin: 0 auto;
+
+}
+.image{
+    text-align: center;
+}
+
+/* Add Student form  */
+form{
+    width:80%;
+    margin: 0 auto;
+    border:2px solid pink;
+    padding: 5px;
+}
+input{
+width:30%;
+height:30px;
+margin-bottom: 5px;
+border-radius: 2px;
+text-align: left;
+color: green;
+border:none;
+
+}
+
+label{
+display: inline-block;
+min-width: 100px;
 }

@@ -1,0 +1,45 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Add User</title>
+
+</head>
+<body>
+
+    <div>
+        <h1>Add Student</h1>
+            <form method="post" action = "/students">
+                <label for="firstName">First Name:</label>
+                <input id ="firstName" type="text" name="firstName" placeholder="First name" /><br/>
+                <label for="lastName">Last Name:</label>
+                <input id ="lastName" type="text" name="lastName" placeholder="Last name" /><br/>
+                <label for="title">Title:</label>
+                <input id="title" type="text" name="title" placeholder="Title" />
+                <br/>
+                <label for="nationality">Nationality:</label>
+                <input id="nationality" type="text" name="nationality" placeholder="Nationality" />
+                <br/>
+                <label for="whySoftwareDeveloper">Nationality:</label>
+                <input id="whySoftwareDeveloper" type="text" name="whySoftwareDeveloper" placeholder="Why software Developer" />
+                <br/>
+                <label for="quote">Favorite Quote:</label>
+                <input id ="quote" type="text" name="favoriteQuote" placeholder="You favorite quote" /><br/>
+                <br/>
+                <label for="src">Attach Photo</label>
+                <input id ="src" type="file" name="src" placeholder="Photo" /><br/>
+                <label for="skills">Skills:</label><br />
+                <textarea id ="skills" rows="10" cols="50" name="skills"/>Add you skills separated by comma</textarea> <br />
+                <button type="submit" value ="Add" /> Add Student</button>
+            </form>
+<a href="/">Back</a>
+    </div>
+    
+
+</body>
+</html>
