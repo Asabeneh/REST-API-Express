@@ -7,6 +7,10 @@ const path = require('path');
 const { parse } = require('querystring');
 const formidable = require('formidable')
 const {studentsInfo} = require("./studentsInfo");
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
+mongoose.connect(process.env.MONGODU_URI || 'mongodb://localhost:27017/StudentsInfo');
 
 const app = express();
 
@@ -33,10 +37,10 @@ app.get('/students',(req, res) => {
 
 
 app.get('/students/:id', (req, res) => {
-    const id = Number(req.params.id);
+    const id = req.params.id;
     let flag = false;
     for (let i = 0; i < studentsInfo.length; i++) {
-        if (studentsInfo[i]._id === id) {
+        if (studentsInfo[i]._id == id) {
             individualUser = studentsInfo[i];
             console.log(studentsInfo[i].nationality)
             flag = true;
@@ -119,10 +123,10 @@ app.delete('/students/:id',(req,res) => {
 });
 
 app.put("/students/edit", (req, res) => {
-  const id = Number(req.params.id);
+  const id = req.params.id;
   let flag = true;
   for (let i = 0; i < studentsInfo.length; i++) {
-    if (studentsInfo[i]._id === id) {
+    if (studentsInfo[i]._id == id) {
       studentsInfo.splice(i, 1);
       flag = true;
       res.json(studentsInfo);
