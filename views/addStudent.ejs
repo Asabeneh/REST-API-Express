@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Add User</title>
+    <title>Add Student</title>
 
 </head>
 <body>
 
     <div>
         <h1>Add Student</h1>
-            <form method="post" action = "/students">
+            <form method="post" action = "/students" encType="multipart/form-data">
                 <label for="firstName">First Name:</label>
                 <input id ="firstName" type="text" name="firstName" placeholder="First name" /><br/>
                 <label for="lastName">Last Name:</label>
@@ -25,14 +25,27 @@
                 <label for="nationality">Nationality:</label>
                 <input id="nationality" type="text" name="nationality" placeholder="Nationality" />
                 <br/>
-                <label for="whySoftwareDeveloper">Nationality:</label>
-                <input id="whySoftwareDeveloper" type="text" name="whySoftwareDeveloper" placeholder="Why software Developer" />
+                <label for="whySofterDeveloper">Why software Developer:</label>
+                <input id="whySofterDeveloper" type="text" name="whySofterDeveloper" placeholder="Why software Developer" />
                 <br/>
+                <label for="longTermVision">Long term vision:</label>
+                <input id="longTermVision" type="text" name="longTermVision" placeholder="Long Term Vision" />
+                <br/>
+
+                <label for="motivatesMe">What motivates you:</label>
+                <input id="motivatesMe" type="text" name="motivatesMe" placeholder="What motivates you " />
+                    <br/>
+                    
                 <label for="quote">Favorite Quote:</label>
                 <input id ="quote" type="text" name="favoriteQuote" placeholder="You favorite quote" /><br/>
                 <br/>
+                <label for="joinedOn">Date join:</label>
+                <input id="joinedOn" type="date" name="joinedOn"  />
+                <br/>
+                <br/>
                 <label for="src">Attach Photo</label>
-                <input id ="src" type="file" name="src" placeholder="Photo" /><br/>
+                <input type="file" name="src" /><br/>
+
                 <label for="skills">Skills:</label><br />
                 <textarea id ="skills" rows="10" cols="50" name="skills"/>Add you skills separated by comma</textarea> <br />
                 <button type="submit" value ="Add" /> Add Student</button>

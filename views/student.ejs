@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Student</title>
+    <title><%= _id %>.<%= firstName %> <%= lastName %></title>
 </head>
 <body>
 
@@ -16,14 +16,14 @@
         
         <div class="image-detail">
             <h1><%= _id %>. <%= firstName %> <%= lastName %> </h1> 
-            <li><%= nationality %></li>
-            <li><%= title %></li>
-            <li><%= skills %></li>
-            <li><%= whySofterDeveloper %></li>
+            <li>Nationality: <%= nationality %></li>
+            <li>Title: <%= title %></li>
+            <li>Skills: <%= skills %></li>
+            <li>Why a software developer: <%= whySofterDeveloper %></li>
         
-            <li><%= motivatesMe %></li>
-            <li><%= favoriteQuote %></li>
-            <li><%= joinedOn %></li>
+            <li>What motivates you?<%= motivatesMe %></li>
+            <li>Favorite quote:<%= favoriteQuote %></li>
+            <li>Date joined<%= joinedOn %></li>
             <a href="/">Back</a>
         </div>  
     

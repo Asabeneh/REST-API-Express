@@ -2,49 +2,73 @@
     box-sizing: border-box;
 }
 body{
-
-    background:lightblue;
-    font-size: 120%;
-    font-family:Helvetica, sans-serif
+    font-family: 'Roboto', sans-serif;
 }
 h1{
     text-align: center;
 }
 h1,h2{
-    font-family:fantasy;
-    font-size: 26px;
-    background: #f1f1f1;
-    
+    /* font-family:fantasy;
+     font-family: 'Tangerine', serif; */
+     font-size: 20px;
+    background:black;
+    color:orange;
+    /* background: #f1f1f1; */
+    margin: 3px;
 }
 
 img{
-    text-align: center;
     border-radius: 3px;
     max-width: 50%;
     min-width: 50%;
 }
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width:90%;
+    border:10px solid rgba(147, 177, 107,0.25);
+    border-radius: 8px;
+    margin: 0 auto;
+}
 .flex-container > div {
-    border:2px solid gray;
-background-color: #f1f1f1;
-  width: 400px;
-  justify-content:center;
+    border:2px solid orange;
+    width: 400px;
+    justify-content:center;
+    align-items: right;
+    word-wrap: break-word;
+    line-height: 120%;
+    border-bottom: solid 4px #f7931a;
+    background: linear-gradient(to bottom, #f2ae5c, white);
+    margin:5px;
+    border-radius:8px;
 
 }
-.flex-container {
-  display: flex;
-  flex-wrap:wrap;
-  justify-content:space-evenly;
+
+.flex-container > div:hover{
+        background-color: #fbe2c3;
+        border-bottom: solid 4px #f7931a;
+        border: solid 1px #f7931a;
+        color: rgba(0, 0, 0, 0.75);
+        border-bottom: solid 4px #f7931a;
+        background: linear-gradient(to bottom, rgb(245, 143, 20), white);
+        transform: scale(1.01);
 }
+
 li{
 
     margin-left:10px;
     list-style:none;
 }
+.student-detail{
+    line-height: 150%;
+}
 .single-student{
-    border:2px solid green;
+    border:5px solid orange;
     max-width:60%;
     margin: 0 auto;
-
+    word-wrap: break-word;
+    line-height: 120%;
 }
 .image{
     text-align: center;
@@ -54,8 +78,9 @@ li{
 form{
     width:80%;
     margin: 0 auto;
-    border:2px solid pink;
+    border:5px solid #f1f1f1;
     padding: 5px;
+
 }
 input{
 width:30%;
@@ -63,8 +88,8 @@ height:30px;
 margin-bottom: 5px;
 border-radius: 2px;
 text-align: left;
-color: green;
-border:none;
+
+
 
 }
 

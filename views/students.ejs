@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Home</title>
+    <title>Integrify Students' Photo Gallery</title>
 </head>
 
 <body>
@@ -17,10 +18,10 @@
         
     </ul>
 
-    <div class="flex-container" style="border:2px solid green">
+    <div class="flex-container">
         <% studentsInfo.forEach(function(student){ %>
     <div>
-        <div style="border:3px solid orange;">
+        <div class="image">
                 <h2><%= student._id %> . <%= student.firstName %> <%= student.lastName %></h2>
                 <a href="/students/<%= student._id %>">
                     <img src="/images/<%= student.src %>">
@@ -28,15 +29,15 @@
 
         </div>
         <div class="student-detail">
-                <li><%= student.nationality %></li>
-                <li><%= student.title %></li>
-                <li><%= student.skills %></li>
-                <li><%= student.whySofterDeveloper %></li>
-               
-                <li><%= student.motivatesMe %></li>
-                <li><%= student.favoriteQuote %></li>
-                <li><%= student.joinedOn %></li>
-                <button>Delete</button>
+                <li>Nationality: <%= student.nationality %></li>
+                <li>Title: <%= student.title %></li>
+                <li>Skills: <%= student.skills %></li>
+                <li>Why a software developer:<%= student.whySofterDeveloper %></li>
+                <li>Long term vision:<%= student.longTermVision %></li>
+                <li>What motivates you:<%= student.motivatesMe %></li>
+                <li>Favorite quote: <%= student.favoriteQuote %></li>
+                <li>Date joined: <%= student.joinedOn %></li>
+
         </div>
     </div>
             

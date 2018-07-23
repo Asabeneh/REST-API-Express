@@ -1,29 +1,24 @@
 const http = require("http");
 const fs = require("fs");
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const fileUpload = require("express-fileupload");
 const path = require('path');
 const { parse } = require('querystring');
 const formidable = require('formidable')
 const {studentsInfo} = require("./studentsInfo");
 
-
-
 const app = express();
 
 console.log(path.join(__dirname, 'public'));
 
-
 app.set('view engine','ejs');
-
 app.use(express.static(__dirname + '/assets')); 
 const port = process.env.PORT || 3000;
 
-
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-
+app.use(bodyParser.json());
+app.use(fileUpload());
 
 let individualUser;
 
@@ -59,31 +54,52 @@ app.get('/add-student',(req,res) =>{
     console.log(req.body)
     res.render('addStudent')
 })
+
+
 app.post('/students',(req, res) => {
     let id = studentsInfo.length + 1;
     id++;
- 
-            
-    const {firstName,lastName,title,nationality, whySoftwareDeveloper, favoriteQuote, src:photo, skilss} = req.body;
-    console.log(req.body)
+    // console.log('what is this file', req.files.src);
+    console.log('what is it', req.files);
+    console.log(req.body);
+    let skillList = req.body.skills.trim().split(', ');
+    // console.log(skillList)
+  
+     if (!req.files) return res
+         .status(400)
+         .send("No files were uploaded.");
+        let sampleFile = req.files.src;
+
+     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+     // Use the mv() method to place the file somewhere on your server
+     sampleFile.mv(
+       __dirname + "/assets/images/" + sampleFile.name,
+       function(err) {
+         if (err) return res.status(500).send(err);
+          req.body._id = id;
+          req.body.src = sampleFile.name;
+          req.body.alt = sampleFile.name.slice(0, sampleFile.name.length-4);
+          req.body.skills = skillList;
+
+             studentsInfo.push(req.body);
+             res.redirect("/");
+       }
+     );
+
+    
+    // const {_id:id, firstName,lastName,title,nationality, whySoftwareDeveloper, favoriteQuote, src, skilss} = req.body;
+    // console.log(req.body)
     
     // fs.createWriteStream(__dirname + '/assets/images/' + `${photo}`);
 
-    studentsInfo.push(req.body); 
-
-    res.redirect('/')
- 
- 
 });
 
 app.delete('/students/:id',(req,res) => {
     const id = Number(req.params.id);
     let flag = true;
-    let deletedUser = {}; 
     for(let i = 0; i < studentsInfo.length; i++){
         if(studentsInfo[i]._id === id){
             studentsInfo.splice(i,1);
-            Object.assign(deletedUser,users[i]);
             flag = true;
             res.json(studentsInfo);
            break;
@@ -96,9 +112,31 @@ app.delete('/students/:id',(req,res) => {
     else{
         console.log('A user with Id is deleted');
         console.log('Deleted:',deletedUser)
-        res.render('userDeleted',{user:deletedUser})
+        res.render('Student deleted',{student:studentsInfo})
         res.send('A user with Id is deleted')
     }
+});
+
+app.put("/students/edit", (req, res) => {
+  const id = Number(req.params.id);
+  let flag = true;
+  for (let i = 0; i < studentsInfo.length; i++) {
+    if (studentsInfo[i]._id === id) {
+      studentsInfo.splice(i, 1);
+      flag = true;
+      res.json(studentsInfo);
+      break;
+    }
+  }
+  if (!flag) {
+    console.log("User was not found with this ID.");
+    res.render("notFound");
+  } else {
+    console.log("A user with Id is deleted");
+    console.log("Deleted:", deletedUser);
+    res.render("Student deleted", { student: studentsInfo });
+    res.send("A user with Id is deleted");
+  }
 });
 
 
