@@ -14,6 +14,7 @@ console.log(path.join(__dirname, 'public'));
 
 app.set('view engine','ejs');
 app.use(express.static(__dirname + '/assets')); 
+
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -58,7 +59,7 @@ app.get('/add-student',(req,res) =>{
 
 app.post('/students',(req, res) => {
     let id = studentsInfo.length + 1;
-    id++;
+ 
     // console.log('what is this file', req.files.src);
     console.log('what is it', req.files);
     console.log(req.body);
