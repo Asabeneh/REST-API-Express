@@ -8,8 +8,8 @@ const { parse } = require('querystring');
 const formidable = require('formidable')
 const {studentsInfo} = require("./studentsInfo");
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODU_URI || 'mongodb://localhost:27017/StudentsInfo');
 
 const app = express();
@@ -31,10 +31,28 @@ let individualUser;
 app.get('/',(req,res) => {
     res.render('students',{studentsInfo})
 })
-app.get('/students',(req, res) => {
+app.get('/students/api',(req, res) => {
     res.json(studentsInfo)
 });
 
+app.get('/students/api/:id', (req, res) => {
+    const id = req.params.id;
+    let flag = false;
+    for (let i = 0; i < studentsInfo.length; i++) {
+        if (studentsInfo[i]._id == id) {
+            individualUser = studentsInfo[i];
+            console.log(studentsInfo[i].nationality)
+            flag = true;
+            res.json(studentsInfo[i]);
+            break;
+        }
+    }
+    if (!flag) {
+        console.log('User was not found.')
+        res.render("notFound")
+    }
+
+});
 
 app.get('/students/:id', (req, res) => {
     const id = req.params.id;
