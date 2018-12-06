@@ -30,17 +30,7 @@ const User = mongoose.model('User', {
     }
 });
 
-// const newUser = new User({
-//     // email:'asabeneh@gmail.com',
-//     // password:'Asab2169598'
-// });
 
-// newUser.save().then((doc)=>{
-// console.log(JSON.stringify(doc,undefined,4))
-// },(e) => {
-//     console.log(e);
-    
-// })
 
 module.exports = {
     User
